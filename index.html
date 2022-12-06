@@ -3,43 +3,107 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+
+<!-- TO DO LIST=============================================
+
+1. Geolocation should be added aer utton press for best user experience
+2. Add horizontal forecast to ajax method
+
+x. Add background image for each weather condition
+  a. make dark transparent containers behind white text after dynamic bg image added
+
+
+Forecast should be depending on live card above before displaying. -->
+
+
+
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-          <section class="top-banner">
-            <div class="container">
-              <h1 class="heading">Simple Weather App</h1>
-              <form>
-                <input type="text" placeholder="Search for a city" autofocus>
-                <button type="submit">SUBMIT</button>
-                <span class="msg"></span>
-              </form>
-            </div>
-          </section>
-          <section class="ajax-section">
-            <div class="container">
-              <ul class="cities"></ul>
-            </div>
-          </section>
-          <footer class="page-footer">
-            <div class="container">
-              <small>Made by <a href="http://koltenedward.com/" target="_blank">Kolten Edward</a>
-              </small>
-            </div>
-          </footer>
-          
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <section class="top-banner">
+      <div class="container">
+        <h1 class="heading">Simple Weather App</h1>
+        <form>
+          <input type="text" placeholder="Search for a city" autofocus />
+          <button type="submit">Weather Me</button>
+          <span class="msg"></span>
+        </form>
+      </div>
+    </section>
 
+    <section class="ajax-section">
+      <div class="container">
+        <ul class="cities"></ul>
+      </div>
+    </section>
 
-        <script src="main.js" async defer></script>
-    </body>
+    <section class="horizontal-scroll">
+      <div class="media-scroller">
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">${day.temp.min}&deg;F </span>
+          <span class="high-temp">${day.temp.max}&deg;F</span>
+        </div>
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">81 </span>
+          <span class="high-temp">90</span>
+        </div>
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">81 </span>
+          <span class="high-temp">90</span>
+        </div>
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">81 </span>
+          <span class="high-temp">90</span>
+        </div>
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">81 </span>
+          <span class="high-temp">90</span>
+        </div>
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">81 </span>
+          <span class="high-temp">90</span>
+        </div>
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">81 </span>
+          <span class="high-temp">90</span>
+        </div>
+      </div>
+    </section>
+
+    <script src="main.js" async defer></script>
+  </body>
 </html>

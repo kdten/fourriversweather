@@ -1,4 +1,3 @@
-
 const form = document.querySelector(".top-banner form");
 const input = document.querySelector(".top-banner input");
 const msg = document.querySelector(".top-banner .msg");
@@ -23,7 +22,7 @@ form.addEventListener("submit", e => {
 
       const li = document.createElement("li");
       li.classList.add("city");
-      const markup = `
+      const currentMarkup = `
         <h2 class="city-name" data-name="${name},${sys.country}">
           <span>${name}</span>
           <sup>${sys.country}</sup>
@@ -34,14 +33,73 @@ form.addEventListener("submit", e => {
           <figcaption>${weather[0]["description"]}</figcaption>
         </figure>
       `;
-      li.innerHTML = markup;
+      li.innerHTML = currentMarkup;
       list.appendChild(li);
     })
     .catch(() => {
-      msg.textContent = "Please search for a valid city";
+      msg.textContent = "Please enter a valid city";
     });
 
   msg.textContent = "";
   form.reset();
   input.focus();
 });
+
+
+// Forecast block
+
+{/* <section class="horizontal-scroll">
+      <div class="media-scroller">
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">81 </span>
+          <span class="high-temp">90</span>
+        </div>
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">81 </span>
+          <span class="high-temp">90</span>
+        </div>
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">81 </span>
+          <span class="high-temp">90</span>
+        </div>
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">81 </span>
+          <span class="high-temp">90</span>
+        </div>
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">81 </span>
+          <span class="high-temp">90</span>
+        </div>
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">81 </span>
+          <span class="high-temp">90</span>
+        </div>
+
+        <div class="media-element">
+          <img class="icon-sm" src="icons/clear-day.svg">
+          <span class="date">Today</span>
+          <span class="low-temp">81 </span>
+          <span class="high-temp">90</span>
+        </div>
+      </div>
+    </section>
+
+    https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}&units=${units}$lang=en&exclude=&{exlude} */}
