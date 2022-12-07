@@ -1,3 +1,5 @@
+document.querySelector('#btnGet');
+document.addEventListener('click', locate);
 
 function locate() {
     const posStatus = document.querySelector('#posStatus');
