@@ -2,6 +2,7 @@
 const api = "1f5dd9456ba9213876292754165e9241"; //Replace with your API
 
 const iconImg = document.getElementById("weather-icon");
+const iconImgForecast = document.getElementById("weather-icon-fc");
 const loc = document.querySelector("#location");
 const feelsL = document.querySelector(".fl");
 const tempF = document.querySelector(".f");
@@ -54,6 +55,7 @@ window.addEventListener("load", () => {
           //const { sunrise, sunset } = data[1].sys;
           // const for forecast
           const iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+          const iconFcUrl = `http://openweathermap.org/img/wn/${icon}.png`;
           const mainTemp = (temp * 9) / 5 + 32;
           const feelsLikeF = (feels_like * 9) / 5 + 32;
           const lowTempToday = (min * 9) / 5 + 32;
@@ -64,6 +66,7 @@ window.addEventListener("load", () => {
 
           // Interacting with DOM to show data
           iconImg.src = iconUrl;
+          iconImgForecast.src = iconFcUrl;
           loc.textContent = `${cityName}`;
           desc.textContent = `${description}`;
           feelsL.textContent = `${feelsLikeF.toFixed(0)} °F`;
@@ -73,8 +76,17 @@ window.addEventListener("load", () => {
           //string for
           lowTempHTML.textContent = `${lowTempToday.toFixed(0)} °F`;
           highTempHTML.textContent = `${highTempToday.toFixed(0)} °F`;
-          // Log the data to the console
-          // You would do something with both sets of data here
+        
+
+
+          document.getElementById('.media-scroller').innerHTML = data[1].daily.map(user => 
+            `<div class="media-element">
+            <img class="icon-sm" src="" alt="" srcset="" id="weather-icon" />
+            <div class="date">Today</div>
+            <div class="low-temp">75&deg;F </div>
+            <div class="high-temp">${data[1].daily[0].temp.max}&deg;F</div>
+          </div>`
+        ).join('')
         })
         .catch(function (error) {
           // if there's an error, log it
