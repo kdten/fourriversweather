@@ -28,7 +28,7 @@ window.addEventListener('load', () => {
       lat = position.coords.latitude;
 
 
-      // const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
+
       const base = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${long}&appid=${api}&units=metric&exclude=minutely`;
 
       // Using fetch to get data
