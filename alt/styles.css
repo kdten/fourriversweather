@@ -57,7 +57,7 @@ body {
     grid-auto-columns: 26%;
     color: rgb(0, 0, 0);
   
-    overflow-x: auto;
+    overflow-x: hidden;
     overscroll-behavior-inline: contain;
   
     height: 130px;
