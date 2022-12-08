@@ -1,22 +1,22 @@
 // Openweathermap API. Do not share it publicly.
-const api = '1f5dd9456ba9213876292754165e9241'; //Replace with your API
+const api = "1f5dd9456ba9213876292754165e9241"; //Replace with your API
 
-const iconImg = document.getElementById('weather-icon');
-const loc = document.querySelector('#location');
-const feelsL = document.querySelector('.fl');
-const tempF = document.querySelector('.f');
-const desc = document.querySelector('.desc');
-const sunriseDOM = document.querySelector('.sunrise');
-const sunsetDOM = document.querySelector('.sunset');
+const iconImg = document.getElementById("weather-icon");
+const loc = document.querySelector("#location");
+const feelsL = document.querySelector(".fl");
+const tempF = document.querySelector(".f");
+const desc = document.querySelector(".desc");
+const sunriseDOM = document.querySelector(".sunrise");
+const sunsetDOM = document.querySelector(".sunset");
 
-const lowTempHTML = document.querySelector('.low-temp');
-const highTempHTML = document.querySelector('.high-temp');
+const lowTempHTML = document.querySelector(".low-temp");
+const highTempHTML = document.querySelector(".high-temp");
 
-window.addEventListener('load', () => {
+window.addEventListener("load", () => {
   let long;
   let lat;
   // let lang = 'en';
-  // let units = 'imperial'; 
+  // let units = 'imperial';
   // let exclude = 'minutely,alerts';
   // let url = `http://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${key}&units=${units}&lang=${lang}&exclude=${exclude}`;
 
@@ -27,22 +27,31 @@ window.addEventListener('load', () => {
       long = position.coords.longitude;
       lat = position.coords.latitude;
 
-
-
-      const base = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${long}&appid=${api}&units=metric&exclude=minutely`;
-
-      // Using fetch to get data
-      fetch(base)
-        .then((response) => {
-          return response.json();
+      
+      const weatherURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${long}&appid=${api}&units=metric&exclude=minutely`;
+      const geocodingURL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&limit=5&appid=${api}`;
+      //  *********************** ADDD PROMISE TO HANDLE MULTIPLE APIS *******************
+      Promise.all([
+        fetch(geocodingURL),
+        fetch(weatherURL),
+      ])
+        .then(function (responses) {
+          // Get a JSON object from each of the responses
+          return Promise.all(
+            responses.map(function (response) {
+              return response.json();
+            })
+          );
         })
-        .then((data) => {
-          console.log(data);
-          const { temp, feels_like } = data.current;
-          const { min, max } = data.daily[0].temp;
-          const place = data.name;
-          const { description, icon } = data.current.weather[0];
-          //const { sunrise, sunset } = data.sys;
+        .then(function (data) {
+          const cityName = data[0][0].name;
+          //weather portion
+          console.log(data[1]);
+          const { temp, feels_like } = data[1].current;
+          const { min, max } = data[1].daily[0].temp;
+
+          const { description, icon } = data[1].current.weather[0];
+          //const { sunrise, sunset } = data[1].sys;
           // const for forecast
           const iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
           const mainTemp = (temp * 9) / 5 + 32;
@@ -55,15 +64,43 @@ window.addEventListener('load', () => {
 
           // Interacting with DOM to show data
           iconImg.src = iconUrl;
-          loc.textContent = `${place}`;
+          loc.textContent = `${cityName}`;
           desc.textContent = `${description}`;
           feelsL.textContent = `${feelsLikeF.toFixed(0)} °F`;
           tempF.textContent = `${mainTemp.toFixed(0)} °F`;
           // sunriseDOM.textContent = `${sunriseGMT.toLocaleDateString()}, ${sunriseGMT.toLocaleTimeString()}`;
           // sunsetDOM.textContent = `${sunsetGMT.toLocaleDateString()}, ${sunsetGMT.toLocaleTimeString()}`;
-          //string for 
+          //string for
           lowTempHTML.textContent = `${lowTempToday.toFixed(0)} °F`;
           highTempHTML.textContent = `${highTempToday.toFixed(0)} °F`;
+          // Log the data to the console
+          // You would do something with both sets of data here
+        })
+        .catch(function (error) {
+          // if there's an error, log it
+          console.log(error);
+        });
+
+
+
+
+
+      //const geocodingURL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&limit=5&appid=${api}`;
+      let cityName;
+      // Using fetch to get city data
+      fetch(geocodingURL)
+      
+      .then((response) => {
+        return response.json();
+      });
+
+
+
+
+      //****************************************************************************************** */
+      fetch(weatherURL)
+        .then((data) => {
+          
         });
     });
   }
