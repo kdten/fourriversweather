@@ -62,8 +62,8 @@ window.addEventListener('load', () => {
           // sunriseDOM.textContent = `${sunriseGMT.toLocaleDateString()}, ${sunriseGMT.toLocaleTimeString()}`;
           // sunsetDOM.textContent = `${sunsetGMT.toLocaleDateString()}, ${sunsetGMT.toLocaleTimeString()}`;
           //string for 
-          lowTempToday.textContent = `${lowTempToday.toFixed(0)} °F`;
-          highTempToday.textContent = `${highTempToday.toFixed(0)} °F`;
+          lowTempHTML.textContent = `${lowTempToday.toFixed(0)} °F`;
+          highTempHTML.textContent = `${highTempToday.toFixed(0)} °F`;
         });
     });
   }
