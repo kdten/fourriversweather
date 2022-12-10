@@ -2,7 +2,6 @@
 const api = "1f5dd9456ba9213876292754165e9241"; //Replace with your API
 
 const iconImg = document.getElementById("weather-icon");
-const iconImgForecast = document.getElementById("weather-icon-fc");
 const loc = document.querySelector("#location");
 const feelsL = document.querySelector(".fl");
 const tempF = document.querySelector(".f");
@@ -43,7 +42,6 @@ window.addEventListener("load", () => {
           //const { sunrise, sunset } = data[1].sys;
           // const for forecast
           const iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-          const iconFcUrl = `http://openweathermap.org/img/wn/${icon}.png`;
           const mainTemp = temp;
           const feelsLikeF = feels_like;
           // Converting Epoch(Unix) time to GMT
@@ -52,14 +50,13 @@ window.addEventListener("load", () => {
           console.log(dailyArray);
           // Interacting with DOM to show data
           iconImg.src = iconUrl;
-          iconImgForecast.src = iconFcUrl;
           loc.textContent = `${cityName}`;
           desc.textContent = `${description}`;
           feelsL.textContent = `${feelsLikeF.toFixed(0)} °F`;
           tempF.textContent = `${mainTemp.toFixed(0)} °F`;
 
           
-          const mediaSc = document.querySelector(".media-scroller");
+          const mediaSc = document.querySelector(".day-scroller");
           for (let i = 0; i < 8; i++) {
             // Create a new date object using the timestamp from the dailyArray object, and a todays date to compare it to
             const date = new Date(dailyArray[i].dt * 1000);
@@ -68,6 +65,7 @@ window.addEventListener("load", () => {
             // Get the month and day part from the date object
             const month = date.toLocaleString("default", { month: "short" });
             const day = date.toLocaleString("default", { day: "numeric" });
+            const weekday = date.toLocaleString("default", { weekday: "short" });
             const todayMonth = todayDate.toLocaleString("default", { month: "short" });
             const todayDay = todayDate.toLocaleString("default", { day: "numeric" });
           
@@ -81,7 +79,7 @@ window.addEventListener("load", () => {
             <img class="icon-sm" src="http://openweathermap.org/img/wn/${
               dailyArray[i].weather[0].icon
             }.png" alt="" srcset="" id="weather-icon" />
-            <div class="date">${formattedDate}</div>
+            <div class="date"><strong>${weekday}</strong> ${formattedDate}</div>
             <div class="low-temp">${dailyArray[i].temp.min.toFixed(0)}°</div>
             <div class="high-temp">${dailyArray[i].temp.max.toFixed(0)}°</div>
           </div>`;
