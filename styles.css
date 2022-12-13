@@ -84,7 +84,7 @@ body {
 .day-scroller {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
-} */
+}
 
 @media only screen and (min-width: 530px) {
   .day-scroller {
