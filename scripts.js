@@ -23,7 +23,7 @@ window.addEventListener("load", () => {
       lat = position.coords.latitude;
 
       const weatherURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${long}&appid=${api}&units=imperial&exclude=minutely`;
-      const geocodingURL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&limit=5&appid=${api}`;
+      const geocodingURL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&limit=5&appid=${api}`;
       //  *********************** ADDD PROMISE TO HANDLE MULTIPLE APIS *******************
       Promise.all([fetch(geocodingURL), fetch(weatherURL)])
         .then(function (responses) {
